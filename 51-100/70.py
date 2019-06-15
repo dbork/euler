@@ -3,38 +3,33 @@
 import sys
 sys.path.append("..")
 import primes
-limit = 20
+import itertools as it
+limit = 10000000
 
 # i guess i don't actually know if this approach is faster than
 # prime-factorizing-by-trial-division, but i think it works fast enough for
 # the purposes of this problem
 def getTotients(n):
-    totients = map(float, range(n))
+    #totients = map(float, range(n))
+    totients = range(n + 1)
     primesList = filter(lambda x: x != 0, primes.getPrimes(n, "log"))
 
     for prime in primesList:
+        for i in range(2, n / prime + 1):
+            totients[prime * i] *= (prime - 1) 
+            totients[prime * i] /= prime
 
-getTotients(limit)
+    return totients
 
-#def getPrimes(n, freq=None):
-#    if freq != None:
-#        print "calculating primes less than " + str(n) + "..."
-#    primesList = range(n)
-#    primesList[1] = 0
-#
-#    # since every divisor removes numbers at least twice itself, we only have
-#    # to consider divisors up to limit / 2
-#    for divisor in range(2, n / 2):
-#        if freq != None and freq != "log" and divisor % freq == 0:
-#            print "removing multiples of " + str(divisor)
-#
-#        if freq == "log" and math.log(divisor, 2).is_integer():
-#            print "removing multiples of " + str(divisor)
-#
-#        if primesList[divisor] == 0:
-#            continue
-#        for j in range(2, (n - 1) / divisor + 1):
-#            primesList[j * divisor] = 0
-#
-#    print "primes calculated..."
-#    return primesList
+totients = getTotients(limit)
+print "totients calculated..."
+totientRatios = [0] + [float(i) / totients[i] for i in range(1, limit + 1)]
+print "totient ratios calculated..."
+r = range(limit + 1)
+
+joinedList = zip(r, totients, totientRatios)
+# checking whether the sorted lists of digits in i and j are equal is
+# equivalent to checking whether the two are permutations of each other
+print sorted(filter(lambda x: sorted(list(str(x[0]))) \
+                           == sorted(list(str(x[1]))) and x[0] != x[1], \
+                           joinedList), key=lambda y: y[2])[0]

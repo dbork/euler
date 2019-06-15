@@ -54,46 +54,6 @@
 # naturally, though, i don't think that's enough to get us where we want.
 # hmmmmm
 
-#cands = ['1' + str(b) + str(c) + str(d) + str(e) + str(f) + str(g) + str(h) \
-#        + str(i) + '0' for b in range(5) for c in range(10) for d in range(
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# april 10, 2018: let's try this again again, despite having spent way too much
-# fruitless effort on it lol
-
-# let x be the number, so x ** 2 = 1a2b3c4d5e6f7g8h9i0
-
-# observe that x has to be divisible by 10, since x ** 2 is
-# then x ** 2 has to be divisble by 100, and i = 0, great
-
-# the remainder can't be divisible by either 5 or 2, i guess? for whatever
-# that's worth...
-
-# and then x ** 2 / 100 is 9 mod 10, which gives x9 = 3 or 7, and i guess we
-# could make a search tree...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+cands = ['1' + str(b) + str(c) + str(d) + str(e) + str(f) + str(g) + str(h) \
+        + str(i) + '0' for b in range(5) for c in range(10) for d in range(
 
